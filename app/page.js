@@ -92,7 +92,7 @@ export default function Home() {
           <div className="p-4 border border-gray-300 bg-gray-300 rounded shadow-md">
             <h3 className="text-lg font-semibold text-blue-600">Pork Chops</h3>
             <p className="mt-2 text-gray-700">
-              Oven-roasted, pan-fried, sizzled or seared, we've compiled a
+              Oven-roasted, pan-fried, sizzled or seared, we&apos;ve compiled a
               variety of ways to serve deliciously tender pork chops, from posh
               plates to everyday feasts.
             </p>
