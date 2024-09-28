@@ -94,7 +94,7 @@ export default function Home() {
             <p className="mt-2 text-gray-700">
               Oven-roasted, pan-fried, sizzled or seared, compiled variety of
               ways to serve deliciously tender pork chops, from posh plates to
-              everyday feasts.
+              everyday feasts
             </p>
           </div>
           <div className="p-4 border border-gray-300 bg-gray-300  rounded shadow-md">
