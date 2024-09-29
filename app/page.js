@@ -32,6 +32,7 @@ export default function Home() {
       if (res.ok) {
         // Set the response
         setRecipes(data.recipes);
+        // setIngredients(""); // Clear the input
       } else {
         setError(data.error || "An error occurred while fetching recipes.");
       }
@@ -78,7 +79,7 @@ export default function Home() {
   const extractedRecipes = extractRecipes();
 
   return (
-    <div className="flex flex-col items-center min-h-screen py-2 px-0 m-5">
+    <div className="flex flex-col items-center min-h-screen px-0">
       <Image
         src="/dinner_bot_logo.png"
         alt="Logo"
@@ -89,23 +90,25 @@ export default function Home() {
       <h3 className="text-md text-gray-500 mb-4">
         Let us know what you&apos;ve got in your fridge!
       </h3>
-
       <RecipeForm
         handleSubmit={handleSubmit}
         loading={loading}
         ingredients={ingredients}
         setIngredients={setIngredients}
       />
-
       {/* Pass extractedRecipes and error to RecipesCard */}
       <RecipesCard extractedRecipes={extractedRecipes} error={error} />
-      {/* <button
-        type="submit"
-        className="bg-black text-white p-2 rounded w-1/2"
-        disabled={loading}
-      >
-        {loading ? "Fetching more recipes ...." : "Create More Recipes"}
-      </button> */}
+
+      {/* Fetching more recipes */}
+      {extractedRecipes.length > 0 && (
+        <button
+          onClick={handleSubmit} // Trigger the same function using the ingredients already there
+          className="bg-slate-400 text-white text-sm font-thin p-2 mb-4 rounded"
+          disabled={loading}
+        >
+          {loading ? "Fetching more recipes ...." : "Create More Recipes"}
+        </button>
+      )}
     </div>
   );
 }
