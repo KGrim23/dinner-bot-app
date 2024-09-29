@@ -10,7 +10,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="h-full">
-        <div className="flex flex-col min-h-screen">
+        <div className="flex flex-col items-center min-h-screen">
           <header className="flex justify-center items-center mb-4 sm:max-w-md md:max-w-lg lg:max-w-xl">
             <Image
               src="/dinner_bot_logo.png"
