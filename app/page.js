@@ -79,7 +79,7 @@ export default function Home() {
   const extractedRecipes = extractRecipes();
 
   return (
-    <div className="flex flex-col items-center min-h-screen px-0">
+    <div className="flex flex-col items-center min-h-screen px-4">
       <Image
         src="/dinner_bot_logo.png"
         alt="Logo"
