@@ -79,7 +79,7 @@ export default function Home() {
   const extractedRecipes = extractRecipes();
 
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center px-4">
       <h3 className="text-md text-gray-500 mb-4">
         Let us know what you&apos;ve got in your fridge!
       </h3>
