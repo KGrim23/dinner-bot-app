@@ -9,9 +9,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="h-full">
+      <body className="h-full w-full">
         <div className="flex flex-col items-center min-h-screen">
-          <header className="flex justify-center items-center mb-4 sm:max-w-md md:max-w-lg lg:max-w-xl">
+          <header className="flex justify-center items-center mb-4">
             <Image
               src="/dinner_bot_logo.png"
               alt="Logo"
