@@ -12,7 +12,10 @@ export default function RecipesCard({ extractedRecipes, error }) {
 
           {/* Display each recipe */}
           {extractedRecipes.map((recipe, index) => (
-            <div key={index} className="p-4">
+            <div
+              key={index}
+              className="p-4 border border-gray-300 bg-gray-300 rounded"
+            >
               <h3 className="text-lg font-semibold text-black">
                 {recipe.title}
               </h3>

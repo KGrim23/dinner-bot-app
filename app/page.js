@@ -99,6 +99,13 @@ export default function Home() {
 
       {/* Pass extractedRecipes and error to RecipesCard */}
       <RecipesCard extractedRecipes={extractedRecipes} error={error} />
+      {/* <button
+        type="submit"
+        className="bg-black text-white p-2 rounded w-1/2"
+        disabled={loading}
+      >
+        {loading ? "Fetching more recipes ...." : "Create More Recipes"}
+      </button> */}
     </div>
   );
 }
