@@ -24,7 +24,7 @@ export default function RecipeForm({
         className="bg-black text-white p-2 rounded w-full"
         disabled={loading}
       >
-        {loading ? "Fetching recipes..." : "Find Recipes"}
+        {loading ? "Fetching recipes...." : "Find Recipes"}
       </button>
     </form>
   );
