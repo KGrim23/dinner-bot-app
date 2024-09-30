@@ -9,6 +9,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="manifest" href="/manifest.json" /> {/* Link to manifest */}
+        <meta name="theme-color" content="#317EFB" />
+        <link rel="icon" href="/favicon.ico" />
+      </head>
       <body className="h-full">
         <div className="flex flex-col items-center min-h-screen p-4">
           {" "}

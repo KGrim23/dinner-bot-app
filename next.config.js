@@ -1,9 +1,21 @@
-// next.config.js
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["media.tenor.com"], // Add this line to allow images from tenor
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "media.tenor.com",
+        port: "", // Optional, but can be left empty if none
+        pathname: "/**", // Allows loading any images from the domain
+      },
+    ],
   },
+  reactStrictMode: true,
 };
 
-module.exports = nextConfig;
+const withPWA = require("next-pwa")({
+  dest: "public",
+  disable: process.env.NODE_ENV === "development", // Disable PWA in development mode
+});
+
+module.exports = withPWA(nextConfig);

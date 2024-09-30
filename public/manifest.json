@@ -1,0 +1,16 @@
+{
+  "name": "Dinner Bot App",
+  "short_name": "Dinner Bot",
+  "description": "Generate recipes using AI",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#317EFB",
+  "icons": [
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}
