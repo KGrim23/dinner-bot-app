@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function RecipesCard({ extractedRecipes, error }) {
+export default function RecipeCard({ extractedRecipes, error }) {
   return (
     <div className="mt-6 mb-6 w-full sm:max-w-md md:max-w-lg lg:max-w-xl">
       {error && <p className="text-red-500">{error}</p>}
@@ -47,11 +47,11 @@ export default function RecipesCard({ extractedRecipes, error }) {
             </div>
           ))}
 
-          <div className="p-4 mt-6 text-center">
+          {/* <div className="p-4 mt-6 text-center">
             <p className="text-pink-600 font-semibold mt-4 italic">
               Bon appétit!
             </p>
-          </div>
+          </div> */}
         </div>
       )}
     </div>

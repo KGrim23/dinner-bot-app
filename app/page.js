@@ -1,51 +1,16 @@
 "use client";
-import Image from "next/image";
-import { useState } from "react";
-import RecipeForm from "./components/form.js";
-import RecipesCard from "./components/recipes_card.js";
+import RecipeCard from "./components/RecipeCard.js";
+import RecipeForm from "./components/recipeForm.js";
+import React, { useState } from "react";
 
 export default function Home() {
-  const [ingredients, setIngredients] = useState("");
-  const [recipes, setRecipes] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [recipes, setRecipes] = useState(""); // Define recipes state
+  const [ingredients, setIngredients] = useState(""); // State for input ingredients
+  const [error, setError] = useState(""); // State for error handling
+  const [loading, setLoading] = useState(false); // State for loading status
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setError("");
-
-    try {
-      const res = await fetch("/api/recipes", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          ingredients: ingredients
-            .split(",")
-            .map((ingredient) => ingredient.trim()),
-        }),
-      });
-
-      const data = await res.json();
-      if (res.ok) {
-        // Set the response
-        setRecipes(data.recipes);
-        // setIngredients(""); // Clear the input
-      } else {
-        setError(data.error || "An error occurred while fetching recipes.");
-      }
-    } catch (error) {
-      setError("Failed to fetch recipes. Please try again.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  // Improved function to extract recipes
   const extractRecipes = () => {
-    if (!recipes) return [];
+    if (!recipes || typeof recipes !== "string") return [];
 
     return recipes.split("\n\n").map((recipe) => {
       const descriptionMatch = recipe.match(/Brief description:\s*(.*)/);
@@ -63,13 +28,13 @@ export default function Home() {
         ? ingredientsMatch[1]
             .split("\n")
             .map((ingredient) => ingredient.trim())
-            .filter(Boolean) // Remove empty strings
+            .filter(Boolean)
         : [];
       const steps = howToMatch
         ? howToMatch[1]
             .split("\n")
             .map((step) => step.trim())
-            .filter(Boolean) // Remove empty strings
+            .filter(Boolean)
         : [];
 
       return { description, title, ingredients, steps };
@@ -78,24 +43,71 @@ export default function Home() {
 
   const extractedRecipes = extractRecipes();
 
+  // Updated handleSubmit function to fetch recipes based on ingredients
+  const handleSubmit = async () => {
+    setLoading(true); // Set loading to true while fetching
+    setError(""); // Clear any existing errors
+
+    try {
+      const res = await fetch("/api/recipes", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ingredients: ingredients
+            .split(",")
+            .map((ingredient) => ingredient.trim()),
+        }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        setRecipes(data.recipes); // Update recipes with fetched data
+      } else {
+        setError(data.error || "An error occurred while fetching recipes.");
+      }
+    } catch (error) {
+      setError("Failed to fetch recipes. Please try again.");
+    } finally {
+      setLoading(false); // Set loading to false after fetch is complete
+    }
+  };
+
+  const handleCreateMoreRecipes = async () => {
+    // Scroll to the top smoothly
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+
+    // Use a timeout to allow scrolling to complete before fetching
+    await new Promise((resolve) => setTimeout(resolve, 300));
+
+    await handleSubmit(); // Fetch new recipes
+  };
+
   return (
-    <div className="flex flex-col items-center justify-center px-4">
+    <div className="flex flex-col items-center justify-center">
       <h3 className="text-md text-gray-500 mb-4">
         Let us know what you&apos;ve got in your fridge!
       </h3>
+
       <RecipeForm
         handleSubmit={handleSubmit}
         loading={loading}
         ingredients={ingredients}
         setIngredients={setIngredients}
+        setError={setError}
+        setLoading={setLoading}
       />
-      {/* Pass extractedRecipes and error to RecipesCard */}
-      <RecipesCard extractedRecipes={extractedRecipes} error={error} />
 
-      {/* Fetching more recipes */}
+      <RecipeCard extractedRecipes={extractedRecipes} error={error} />
+
       {extractedRecipes.length > 0 && (
         <button
-          onClick={handleSubmit} // Trigger the same function using the ingredients already there
+          onClick={handleCreateMoreRecipes} // Use the new handler for button click
           className="bg-slate-400 text-white text-sm font-thin p-2 mb-4 rounded"
           disabled={loading}
         >

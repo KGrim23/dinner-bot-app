@@ -14,7 +14,7 @@ export default function RootLayout({ children }) {
         <meta name="theme-color" content="#317EFB" />
         <link rel="icon" href="/favicon.ico" />
       </head>
-      <body className="h-full">
+      <body className="h-full bg-white text-black text-md">
         <div className="flex flex-col items-center min-h-screen p-4">
           {" "}
           {/* Adjust padding here */}
@@ -28,7 +28,7 @@ export default function RootLayout({ children }) {
             />
           </header>
           {/* Wrapper with flex and min-height */}
-          <main className="flex-grow px-4">
+          <main className="flex-grow text-sm w-full max-w-xl mx-auto p-4">
             {" "}
             {/* Adjust horizontal padding here */}
             {/* Main content area */}
