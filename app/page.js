@@ -1,6 +1,6 @@
 "use client";
 import RecipeCard from "./components/RecipeCard.js";
-import RecipeForm from "./components/recipeForm.js";
+import RecipeForm from "./components/RecipeForm.js";
 import React, { useState } from "react";
 
 export default function Home() {
