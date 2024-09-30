@@ -1,5 +1,6 @@
 import Image from "next/image";
 import "./globals.css";
+import Link from "next/link";
 
 export const metadata = {
   title: "Dinner Bot App",
@@ -20,33 +21,30 @@ export default function RootLayout({ children }) {
           {/* Adjust padding here */}
           <header className="flex justify-center items-center mb-4">
             <Image
-              src="/dinner_bot_logo.png"
+              src="/dinner_bot_2.png"
+              priority
               alt="Logo"
-              width={300}
-              height={300}
+              width={150}
+              height={150}
               className="mb-4"
             />
           </header>
           {/* Wrapper with flex and min-height */}
-          <main className="flex-grow text-sm w-full max-w-xl mx-auto p-4">
-            {" "}
-            {/* Adjust horizontal padding here */}
-            {/* Main content area */}
+          <main className="flex-grow text-sm md:text-md w-full max-w-xl mx-auto p-4">
             {children}
           </main>
           <footer className="text-black text-center p-4">
             {" "}
-            {/* Footer padding can remain as is or adjust */}
             {/* Footer styles */}
             <p>© {new Date().getFullYear()} Dinner Bot. All rights reserved.</p>
             <p>
-              <a href="/privacy" className="text-gray-600 hover:text-gray-200">
+              <Link href="/privacy" className="text-gray-600">
                 Privacy Policy
-              </a>{" "}
+              </Link>{" "}
               |{" "}
-              <a href="/terms" className="text-gray-600 hover:text-gray-200">
+              <Link href="/terms" className="text-gray-600">
                 Terms of Service
-              </a>
+              </Link>
             </p>
           </footer>
         </div>

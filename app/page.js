@@ -75,18 +75,18 @@ export default function Home() {
     }
   };
 
-  const handleCreateMoreRecipes = async () => {
-    // Scroll to the top smoothly
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+  // const handleCreateMoreRecipes = async () => {
+  //   // Scroll to the top smoothly
+  //   window.scrollTo({
+  //     top: 0,
+  //     behavior: "smooth",
+  //   });
 
-    // Use a timeout to allow scrolling to complete before fetching
-    await new Promise((resolve) => setTimeout(resolve, 300));
+  //   // Use a timeout to allow scrolling to complete before fetching
+  //   await new Promise((resolve) => setTimeout(resolve, 300));
 
-    await handleSubmit(); // Fetch new recipes
-  };
+  //   await handleSubmit(); // Fetch new recipes
+  // };
 
   return (
     <div className="flex flex-col items-center justify-center">
@@ -107,7 +107,13 @@ export default function Home() {
 
       {extractedRecipes.length > 0 && (
         <button
-          onClick={handleCreateMoreRecipes} // Use the new handler for button click
+          onClick={async () => {
+            window.scrollTo({
+              top: 0,
+              behavior: "smooth",
+            });
+            await handleSubmit(); // Fetch new recipes
+          }}
           className="bg-slate-400 text-white text-sm font-thin p-2 mb-4 rounded"
           disabled={loading}
         >
