@@ -33,7 +33,7 @@ export default function RecipeForm({
       console.log("API Response Data:", data); // Debugging log
 
       if (res.ok) {
-        setRecipes(data.recipes); // Update recipes with fetched data
+        setRecipes(data.recipes); // fetched data
         setLoading(false); // Stop loading if fetch is successful
       } else {
         setError(data.error || "An error occurred while fetching recipes.");
