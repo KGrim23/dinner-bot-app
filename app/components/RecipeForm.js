@@ -56,6 +56,7 @@ export default function RecipeForm({
         onChange={(e) => setIngredients(e.target.value)}
         placeholder="Enter ingredients separated by commas"
         className="w-full text-gray-600 p-2 border border-gray-900 bg-gray-200 rounded mb-4"
+        style={{ fontSize: "16px" }}
       />
       <button
         type="submit"
