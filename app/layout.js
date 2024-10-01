@@ -38,7 +38,7 @@ export default function RootLayout({ children }) {
             {/* Footer styles */}
             <p>© {new Date().getFullYear()} Dinner Bot. All rights reserved.</p>
             <p>
-              <Link href="/" className="text-blue-600">
+              <Link href="/" className="text-grey-600">
                 Home
               </Link>{" "}
               |{" "}

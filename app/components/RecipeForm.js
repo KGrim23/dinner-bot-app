@@ -9,7 +9,7 @@ export default function RecipeForm({
   setError,
   loading,
   setLoading,
-  hasRecipes, // Add this prop
+  hasRecipes,
 }) {
   const handleSubmitForm = async (e) => {
     e.preventDefault();
@@ -81,82 +81,3 @@ export default function RecipeForm({
     </form>
   );
 }
-
-// "use client";
-// import React from "react";
-// import Image from "next/image";
-
-// export default function RecipeForm({
-//   ingredients,
-//   setIngredients,
-//   setRecipes,
-//   setError,
-//   loading,
-//   setLoading,
-// }) {
-//   const handleSubmitForm = async (e) => {
-//     e.preventDefault();
-//     setLoading(true);
-//     setError("");
-//     // Clear any existing errors
-
-//     try {
-//       const res = await fetch("/api/recipes", {
-//         method: "POST",
-//         headers: {
-//           "Content-Type": "application/json",
-//         },
-//         body: JSON.stringify({
-//           ingredients: ingredients
-//             .split(",")
-//             .map((ingredient) => ingredient.trim()),
-//         }),
-//       });
-
-//       const data = await res.json();
-//       console.log("API Response Data:", data); // Debugging log
-
-//       if (res.ok) {
-//         setRecipes(data.recipes); // Update recipes with fetched data
-//       } else {
-//         setError(data.error || "An error occurred while fetching recipes.");
-//       }
-//     } catch (error) {
-//       setError("Failed to fetch recipes. Please try again.");
-//     } finally {
-//       setLoading(false); // Set loading to false after fetch is complete
-//     }
-//   };
-
-//   return (
-//     <form
-//       onSubmit={handleSubmitForm} // Use the updated handleSubmitForm function
-//       className="w-full sm:max-w-md md:max-w-lg lg:max-w-xl flex flex-col items-center"
-//     >
-//       <input
-//         type="text"
-//         value={ingredients}
-//         onChange={(e) => setIngredients(e.target.value)}
-//         placeholder="Enter ingredients separated by commas"
-//         className="w-full text-gray-600 p-2 border border-gray-900 bg-gray-200 rounded mb-4"
-//       />
-//       <button
-//         type="submit"
-//         className="bg-black text-white p-2 rounded w-full"
-//         disabled={loading}
-//       >
-//         {loading ? "Fetching recipes...." : "Find Recipes"}
-//       </button>
-
-//       {loading && (
-//         <Image
-//           src="https://media.tenor.com/-0nrZ8IubicAAAAi/raf-rafs.gif"
-//           alt="Cooking Robot"
-//           width={200}
-//           height={200}
-//           className="my-24"
-//         />
-//       )}
-//     </form>
-//   );
-// }
