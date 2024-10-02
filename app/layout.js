@@ -20,21 +20,28 @@ export default function RootLayout({ children }) {
           {" "}
           {/* Adjust padding here */}
           <header className="flex justify-center items-center mb-4">
-            <Image
-              src="/dinner_bot_2.png"
-              priority
-              alt="Logo"
-              width={150}
-              height={150}
-              className="mb-4"
-            />
+            <Link href="/">
+              <Image
+                src="/dinner_bot_2.png"
+                priority
+                alt="Logo"
+                width={150}
+                height={150}
+                className="mb-4"
+              />
+            </Link>
           </header>
           {/* Wrapper with flex and min-height */}
           <main className="flex-grow text-sm md:text-md w-full max-w-xl mx-auto p-4">
             {children}
           </main>
           <footer className="text-black text-center p-4">
-            {" "}
+            {/* View Favorite Recipes link at the bottom, always visible */}
+            <div className="text-center mt-8">
+              <Link href="/favorites" className="text-blue-600 hover:underline">
+                View Favorite Recipes
+              </Link>
+            </div>{" "}
             {/* Footer styles */}
             <p>© {new Date().getFullYear()} Dinner Bot. All rights reserved.</p>
             <p>

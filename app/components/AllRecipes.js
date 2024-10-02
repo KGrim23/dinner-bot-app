@@ -1,38 +1,40 @@
-import React, { useState } from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
+import Link from "next/link";
 import Image from "next/image";
 import FavoriteButton from "./FavoriteButton";
 import RecipeCard from "./RecipeCard";
 
 export default function AllRecipes({ extractedRecipes = [], error }) {
   const [currentIndex, setCurrentIndex] = useState(null);
-  const [favorites, setFavorites] = useState(
-    Array(extractedRecipes.length).fill(false)
-  );
+  const [favorites, setFavorites] = useState([]);
 
-  const handleRecipeClick = (index) => {
-    setCurrentIndex(index);
-  };
+  // Load stored favorites from local storage
+  useEffect(() => {
+    const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    setFavorites(storedFavorites);
+  }, []);
 
-  const goToNextRecipe = () => {
-    if (currentIndex < extractedRecipes.length - 1) {
-      setCurrentIndex(currentIndex + 1);
+  // Store recipes in local storage
+  useEffect(() => {
+    if (extractedRecipes.length) {
+      localStorage.setItem("recipes", JSON.stringify(extractedRecipes));
     }
-  };
-
-  const goToPreviousRecipe = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex(currentIndex - 1);
-    }
-  };
-
-  const closeRecipeCard = () => {
-    setCurrentIndex(null);
-  };
+  }, [extractedRecipes]);
 
   const toggleFavorite = (index) => {
     const updatedFavorites = [...favorites];
     updatedFavorites[index] = !updatedFavorites[index]; // Toggle favorite state
     setFavorites(updatedFavorites);
+
+    // Update local storage
+    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+  };
+
+  // Handle recipe click to show RecipeCard
+  const handleRecipeClick = (index) => {
+    setCurrentIndex(index);
   };
 
   return (
@@ -42,9 +44,13 @@ export default function AllRecipes({ extractedRecipes = [], error }) {
       {currentIndex !== null ? (
         <RecipeCard
           recipe={extractedRecipes[currentIndex]}
-          onClose={closeRecipeCard}
-          onNext={goToNextRecipe}
-          onPrevious={goToPreviousRecipe}
+          onClose={() => setCurrentIndex(null)}
+          onNext={() =>
+            setCurrentIndex((prev) =>
+              Math.min(prev + 1, extractedRecipes.length - 1)
+            )
+          }
+          onPrevious={() => setCurrentIndex((prev) => Math.max(prev - 1, 0))}
         />
       ) : (
         Array.isArray(extractedRecipes) &&
@@ -66,7 +72,7 @@ export default function AllRecipes({ extractedRecipes = [], error }) {
                   </h3>
                   <FavoriteButton
                     onClick={() => toggleFavorite(index)}
-                    isFavorited={favorites[index]}
+                    isFavorited={favorites[index] || false}
                   />
                 </div>
 
