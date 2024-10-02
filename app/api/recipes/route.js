@@ -29,7 +29,7 @@ How to:
 [Step 2]
 [...] 
 Ensure that:
-The brief description is no longer than 50 words.
+The brief description is no longer than 200 words.
 Ingredients are listed one per line without any symbols or formatting.
 Steps are listed one per line without any symbols or formatting.
 There are no additional headers or sections beyond those specified.
