@@ -7,7 +7,6 @@ export default function RecipeCard({
   onNext,
   onPrevious,
 }) {
-  // Check if recipe is provided and is valid
   if (!recipe) {
     return <p className="text-red-500">No recipe data available.</p>;
   }
@@ -70,7 +69,7 @@ export default function RecipeCard({
         <div className="flex justify-between space-x-4 mt-4">
           <button
             onClick={onPrevious}
-            className="bg-black text-white px-4 py-2 text-xs rounded hover:bg-blue-600 transition-all disabled:opacity-50 w-full" // Set width to full
+            className="bg-black text-white px-4 py-2 text-xs rounded hover:bg-blue-400 transition-all disabled:opacity-0 w-full"
             disabled={recipe.index === 0} // Disable if it's the first recipe
           >
             Previous
@@ -79,14 +78,14 @@ export default function RecipeCard({
           {/* Back to all recipes */}
           <button
             onClick={onClose}
-            className="bg-black text-white px-4 py-2 text-xs rounded hover:bg-blue-600 transition-all w-full" // Set width to full
+            className="bg-black text-white px-4 py-2 text-xs rounded hover:bg-blue-400 transition-all w-full"
           >
             All Recipes
           </button>
 
           <button
             onClick={onNext}
-            className="bg-black text-white px-4 py-2 text-xs rounded hover:bg-blue-600 transition-all disabled:opacity-50 w-full" // Set width to full
+            className="bg-black text-white px-4 py-2 text-xs rounded hover:bg-blue-400 transition-all disabled:opacity-0 w-full"
             disabled={recipe.index === recipe.length - 1} // Disable if it's the last recipe
           >
             Next

@@ -1,22 +1,23 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 
-export default function FavoriteButton() {
-  const [isFavorited, setIsFavorited] = useState(false);
-
-  const toggleFavorite = () => {
-    setIsFavorited(!isFavorited);
-  };
-
+export default function FavoriteButton({
+  onClick,
+  isFavorited,
+  toggleFavorite,
+}) {
   return (
     <button
-      onClick={toggleFavorite}
+      onClick={(e) => {
+        e.stopPropagation(); // Prevent click from bubbling up to the parent
+        onClick(toggleFavorite);
+      }}
       className={`text-xl ${
-        isFavorited ? "text-red-700" : "text-gray-500"
+        isFavorited ? "text-green-700" : "text-gray-500"
       } focus:outline-none`}
       aria-label="Toggle Favorite"
     >
-      {isFavorited ? "♥" : "♡"}
+      {isFavorited ? "💚" : "♡"}
     </button>
   );
 }
