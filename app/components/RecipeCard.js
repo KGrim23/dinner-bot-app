@@ -21,14 +21,14 @@ export default function RecipeCard({
           <h3 className="text-lg font-semibold text-black">{recipe.title}</h3>
         </div>
 
-        {/* <div className="flex space-x-2 mt-2">
+        <div className="flex space-x-2 mt-2">
           <span className="bg-black text-white text-xs font-small px-3 py-1 rounded-full">
             ⏰ {recipe.time}
           </span>
           <span className="bg-black text-white text-xs font-small px-3 py-1 rounded-full">
             🎯 {recipe.difficulty}
           </span>
-        </div> */}
+        </div>
 
         {/* Display the brief description */}
         <p className="text-sm md:text-lg text-green-900 italic mb-5 mt-5">
