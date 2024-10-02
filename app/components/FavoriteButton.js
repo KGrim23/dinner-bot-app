@@ -10,7 +10,7 @@ export default function FavoriteButton({
     <button
       onClick={(e) => {
         e.stopPropagation(); // Prevent click from bubbling up to the parent
-        onClick(toggleFavorite);
+        onClick();
       }}
       className={`text-xl ${
         isFavorited ? "text-green-700" : "text-gray-500"
