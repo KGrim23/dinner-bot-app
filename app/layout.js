@@ -12,14 +12,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <link rel="manifest" href="/manifest.json" /> {/* Link to manifest */}
+        <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#317EFB" />
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body className="h-full bg-white text-black text-md">
-        <div className="flex flex-col items-center min-h-screen p-4">
-          {" "}
-          {/* Adjust padding here */}
+        <div className="flex flex-col min-h-screen">
           <header className="flex justify-center items-center mb-4">
             <Link href="/">
               <Image
@@ -32,14 +30,25 @@ export default function RootLayout({ children }) {
               />
             </Link>
           </header>
-          {/* Wrapper with flex and min-height */}
-          <main className="flex-grow text-sm md:text-md w-full max-w-xl mx-auto p-2">
+
+          {/* Main content area */}
+          <main className="flex-grow text-sm md:text-md w-full max-w-xl mx-auto p-4">
             {children}
-            <Menu />
           </main>
-          <footer className="text-black text-center p-4">
-            {/* Footer styles */}
-            {/* <p>© {new Date().getFullYear()} Dinner Bot. All rights reserved.</p>
+
+          {/* Footer containing the Menu component */}
+          <footer className="bg-white shadow-md">
+            <Menu />
+          </footer>
+        </div>
+      </body>
+    </html>
+  );
+}
+
+/* Footer styles */
+
+/* <p>© {new Date().getFullYear()} Dinner Bot. All rights reserved.</p>
             <p>
               <Link href="/" className="text-grey-600">
                 Home
@@ -52,10 +61,4 @@ export default function RootLayout({ children }) {
               <Link href="/terms" className="text-gray-600">
                 Terms of Service
               </Link>
-            </p> */}
-          </footer>
-        </div>
-      </body>
-    </html>
-  );
-}
+            </p> */
