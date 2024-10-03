@@ -1,6 +1,7 @@
 import Image from "next/image";
 import "./globals.css";
 import Link from "next/link";
+import Menu from "./components/Menu";
 
 export const metadata = {
   title: "Dinner Bot App",
@@ -32,18 +33,15 @@ export default function RootLayout({ children }) {
             </Link>
           </header>
           {/* Wrapper with flex and min-height */}
-          <main className="flex-grow text-sm md:text-md w-full max-w-xl mx-auto p-4">
+          <main className="flex-grow text-sm md:text-md w-full max-w-xl mx-auto p-2">
             {children}
+            {/* <Menu /> */}
           </main>
           <footer className="text-black text-center p-4">
-            {/* View Favorite Recipes link at the bottom, always visible */}
-            <div className="text-center mt-8">
-              <Link href="/favorites" className="text-blue-600 hover:underline">
-                View Favorite Recipes
-              </Link>
-            </div>{" "}
+            <Menu />
+
             {/* Footer styles */}
-            <p>© {new Date().getFullYear()} Dinner Bot. All rights reserved.</p>
+            {/* <p>© {new Date().getFullYear()} Dinner Bot. All rights reserved.</p>
             <p>
               <Link href="/" className="text-grey-600">
                 Home
@@ -56,7 +54,7 @@ export default function RootLayout({ children }) {
               <Link href="/terms" className="text-gray-600">
                 Terms of Service
               </Link>
-            </p>
+            </p> */}
           </footer>
         </div>
       </body>

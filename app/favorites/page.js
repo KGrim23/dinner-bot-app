@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import FavoritedRecipes from "../components/FavoritedRecipes";
 import RecipeCard from "../components/RecipeCard";
+import Menu from "../components/Menu";
 
 export default function FavoritesPage() {
   const [recipes, setRecipes] = useState([]);
