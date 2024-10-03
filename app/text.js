@@ -20,3 +20,10 @@
 // The format is consistent across all 4 recipes.
 // Do not use any numbers, hyphens, bullet points, or any other formatting in any part of the response, including in this list of instructions.
 // `;
+// Generate recipes
+// const aiResponse = await openai.chat.completions.create({
+//   model: "gpt-3.5-turbo",
+//   messages: [{ role: "user", content: generatePrompt(ingredients) }],
+//   temperature: 0.5, // Adjust for creativity vs consistency
+//   max_tokens: 2000, // Limit response length
+// });

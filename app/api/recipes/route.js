@@ -22,7 +22,7 @@ const createResponse = (body, status = 200) => {
 // Generate prompt for OpenAI
 const generatePrompt = (ingredients) => `
 Given the following ingredients: ${ingredients.join(", ")}
-Please suggest 10 recipes using these ingredients. Format each recipe as follows:
+Please suggest 5 recipes using these ingredients. Format each recipe as follows:
 
 Title: [Recipe title]
 Time: [Total cooking time in minutes]
@@ -32,7 +32,7 @@ Ingredients:
 [Ingredient 1]
 [Ingredient 2]
 [...]
-Steps:
+How to:
 [Step 1]
 [Step 2]
 [...]
@@ -50,12 +50,14 @@ export async function POST(req) {
     const body = await req.json();
     const { ingredients } = ingredientsSchema.parse(body);
 
-    // Generate recipes
     const aiResponse = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo",
+      model: "gpt-3.5-turbo", // Use GPT-4 if needed for more complex outputs
       messages: [{ role: "user", content: generatePrompt(ingredients) }],
-      temperature: 0.7, // Adjust for creativity vs consistency
-      max_tokens: 2000, // Limit response length
+      temperature: 0.5, // Balance between creativity and consistency; lower for stricter structure
+      max_tokens: 2000, // Ensure enough space for 7 recipes, input tokens included
+      top_p: 1, // Default setting to consider the most likely tokens
+      frequency_penalty: 0, // No penalty for repeating tokens
+      presence_penalty: 0, // No penalty for introducing new ideas
     });
 
     const recipes = aiResponse.choices[0].message.content.trim();
