@@ -35,11 +35,9 @@ export default function RootLayout({ children }) {
           {/* Wrapper with flex and min-height */}
           <main className="flex-grow text-sm md:text-md w-full max-w-xl mx-auto p-2">
             {children}
-            {/* <Menu /> */}
+            <Menu />
           </main>
           <footer className="text-black text-center p-4">
-            <Menu />
-
             {/* Footer styles */}
             {/* <p>© {new Date().getFullYear()} Dinner Bot. All rights reserved.</p>
             <p>
