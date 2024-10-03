@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
 import FavoriteButton from "./FavoriteButton";
 import RecipeCard from "./RecipeCard";
@@ -10,13 +9,13 @@ export default function AllRecipes({ extractedRecipes = [], error }) {
   const [currentIndex, setCurrentIndex] = useState(null);
   const [favorites, setFavorites] = useState([]);
 
-  // Load stored favorites from local storage
+  // Load stored favorites from localStorage when the component mounts
   useEffect(() => {
     const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
     setFavorites(storedFavorites);
   }, []);
 
-  // Store recipes in local storage
+  // Store recipes in localStorage
   useEffect(() => {
     if (extractedRecipes.length) {
       localStorage.setItem("recipes", JSON.stringify(extractedRecipes));
@@ -25,10 +24,17 @@ export default function AllRecipes({ extractedRecipes = [], error }) {
 
   const toggleFavorite = (index) => {
     const updatedFavorites = [...favorites];
-    updatedFavorites[index] = !updatedFavorites[index]; // Toggle favorite state
+
+    // Toggle the favorite status of the recipe at the given index
+    if (updatedFavorites.includes(index)) {
+      updatedFavorites.splice(updatedFavorites.indexOf(index), 1); // Remove from favorites if it's already there
+    } else {
+      updatedFavorites.push(index); // Add to favorites
+    }
+
     setFavorites(updatedFavorites);
 
-    // Update local storage
+    // Update localStorage with the new favorites array
     localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
   };
 
@@ -37,30 +43,35 @@ export default function AllRecipes({ extractedRecipes = [], error }) {
     setCurrentIndex(index);
   };
 
+  // Filter out any recipes that do not have a valid title or description
+  const validRecipes = extractedRecipes.filter(
+    (recipe) => recipe.title && recipe.description
+  );
+
   return (
     <div className="mt-6 mb-6 w-full sm:max-w-md md:max-w-lg lg:max-w-3xl xl:max-w-4xl mx-auto px-4">
       {error && <p className="text-red-500">{error}</p>}
 
       {currentIndex !== null ? (
         <RecipeCard
-          recipe={extractedRecipes[currentIndex]}
+          recipe={validRecipes[currentIndex]}
           onClose={() => setCurrentIndex(null)}
           onNext={() =>
             setCurrentIndex((prev) =>
-              Math.min(prev + 1, extractedRecipes.length - 1)
+              Math.min(prev + 1, validRecipes.length - 1)
             )
           }
           onPrevious={() => setCurrentIndex((prev) => Math.max(prev - 1, 0))}
         />
       ) : (
-        Array.isArray(extractedRecipes) &&
-        extractedRecipes.length > 0 && (
+        Array.isArray(validRecipes) &&
+        validRecipes.length > 0 && (
           <div className="space-y-6">
             <h2 className="text-xl text-center font-semibold mb-4 mt-8">
               Recipe Suggestions:
             </h2>
 
-            {extractedRecipes.map((recipe, index) => (
+            {validRecipes.map((recipe, index) => (
               <div
                 key={index}
                 onClick={() => handleRecipeClick(index)}
@@ -72,13 +83,13 @@ export default function AllRecipes({ extractedRecipes = [], error }) {
                   </h3>
                   <FavoriteButton
                     onClick={() => toggleFavorite(index)}
-                    isFavorited={favorites[index] || false}
+                    isFavorited={favorites.includes(index)}
                   />
                 </div>
 
                 <div className="flex flex-col md:flex-row justify-between items-center mb-2 gap-4">
                   <Image
-                    src="/recipe_placeholder.webp"
+                    src={recipe.image || "/recipe_placeholder.webp"}
                     alt="recipe image"
                     width={150}
                     height={150}

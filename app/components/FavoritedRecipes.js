@@ -2,9 +2,8 @@
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import FavoriteButton from "./FavoriteButton";
 
-const FavoritedRecipes = ({ recipes }) => {
+export default function FavoritedRecipes({ recipes, onRecipeClick }) {
   const [favoritedRecipes, setFavoritedRecipes] = useState([]);
 
   useEffect(() => {
@@ -15,17 +14,6 @@ const FavoritedRecipes = ({ recipes }) => {
     setFavoritedRecipes(favoritedRecipesData);
   }, [recipes]);
 
-  const toggleFavorite = (index) => {
-    const updatedFavorites = [...favoritedRecipes];
-    updatedFavorites[index].isFavorited = !updatedFavorites[index].isFavorited; // Toggle favorite state
-    setFavoritedRecipes(updatedFavorites);
-
-    // Update local storage
-    const allFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
-    allFavorites[index] = !allFavorites[index];
-    localStorage.setItem("favorites", JSON.stringify(allFavorites));
-  };
-
   return (
     <div>
       {favoritedRecipes.length > 0 ? (
@@ -33,6 +21,7 @@ const FavoritedRecipes = ({ recipes }) => {
           <div
             key={index}
             className="flex flex-col mb-4 cursor-pointer p-2 border border-gray-300 bg-slate-200 rounded-lg shadow-md hover:bg-slate-300 transition-all"
+            onClick={() => onRecipeClick(index)} // Handle recipe click
           >
             <div className="flex justify-between items-center mb-2">
               <h3 className="text-lg font-semibold text-black">
@@ -64,6 +53,4 @@ const FavoritedRecipes = ({ recipes }) => {
       )}
     </div>
   );
-};
-
-export default FavoritedRecipes;
+}

@@ -1,23 +1,15 @@
 "use client";
 import React from "react";
 
-export default function FavoriteButton({
-  onClick,
-  isFavorited,
-  toggleFavorite,
-}) {
+export default function FavoriteButton({ onClick, isFavorited }) {
   return (
     <button
       onClick={(e) => {
-        e.stopPropagation(); // Prevent click from bubbling up to the parent
+        e.stopPropagation(); // Prevent the click from bubbling up to parent elements
         onClick();
       }}
-      className={`text-xl ${
-        isFavorited ? "text-green-700" : "text-gray-500"
-      } focus:outline-none`}
-      aria-label="Toggle Favorite"
     >
-      {isFavorited ? "💚" : "♡"}
+      {isFavorited ? "💚" : "♡"} {/* Display based on favorited status */}
     </button>
   );
 }
