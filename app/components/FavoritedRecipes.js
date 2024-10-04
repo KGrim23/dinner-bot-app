@@ -35,7 +35,7 @@ export default function FavoritedRecipes({ recipes, onRecipeClick }) {
               height={150}
               className="rounded-lg object-cover w-full md:w-40"
             />
-            <p className="text-sm text-green-900 italic">
+            <p className="text-sm text-green-900 mt-2 mb-2 italic">
               {recipe.description}
             </p>
             <div className="flex space-x-4">

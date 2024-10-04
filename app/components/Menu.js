@@ -12,7 +12,7 @@ import {
 
 export default function Menu() {
   return (
-    <div className="flex flex-row md:text-md w-full justify-between items-center max-w-xl mx-auto p-4">
+    <div className="flex flex-row text-sm md:text-md w-full justify-between items-center max-w-xl mx-auto pl-4 pr-4">
       {/* Home Button */}
       <Link
         href="/"

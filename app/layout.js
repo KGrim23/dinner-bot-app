@@ -37,7 +37,7 @@ export default function RootLayout({ children }) {
           </main>
 
           {/* Footer containing the Menu component */}
-          <footer className="">
+          <footer className="fixed bottom-0 left-0 w-full bg-white shadow-md">
             <Menu />
           </footer>
         </div>
