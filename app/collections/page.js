@@ -19,7 +19,7 @@ export default function Collections() {
   }, []);
 
   return (
-    <div className="max-w-4xl mx-auto p-2 bg-gray-100 mt-10 rounded-lg">
+    <div className="max-w-4xl mx-auto mb-16 p-2 bg-gray-100 mt-10 rounded-lg">
       <h1 className="text-3xl font-bold mb-4 text-center">Recipe Collection</h1>
 
       {recipes.length === 0 ? (

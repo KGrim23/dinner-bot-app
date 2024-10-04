@@ -26,7 +26,7 @@ export default function FavoritesPage() {
   };
 
   return (
-    <div className="mt-6 mb-6 w-full sm:max-w-md md:max-w-lg mx-auto">
+    <div className="mt-6 mb-16 w-full sm:max-w-md md:max-w-lg mx-auto">
       <h2 className="text-2xl text-center font-semibold mb-4 mt-8">
         Your Favorite Recipes:
       </h2>

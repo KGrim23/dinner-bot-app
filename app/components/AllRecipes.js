@@ -88,24 +88,28 @@ export default function AllRecipes({ extractedRecipes = [], error }) {
                 </div>
 
                 <div className="flex flex-row justify-between items-center mb-2 gap-4">
-                  <Image
-                    src={recipe.image || "/recipe_placeholder.webp"}
-                    alt="recipe image"
-                    width={150}
-                    height={150}
-                    className="rounded-lg object-cover w-32 md:w-64" // Smaller on mobile, larger on md+
-                  />
-                  <div className="flex flex-col gap-2 w-full md:w-2/3">
-                    <p className="text-sm text-green-900">
-                      {recipe.description}
-                    </p>
-                    <div className="flex space-x-4">
-                      <span className="text-gray-500 text-xs font-small py-1 rounded-full">
-                        ⏰ {recipe.time}
-                      </span>
-                      <span className="text-gray-500 text-xs font-small px-3 py-1 rounded-full">
-                        🎯 {recipe.difficulty}
-                      </span>
+                  <div className="flex w-1/3">
+                    <Image
+                      src={recipe.image || "/recipe_placeholder.webp"}
+                      alt="recipe image"
+                      width={150}
+                      height={150}
+                      className="rounded-lg object-cover w-full h-full" // Full width and height of its container
+                    />
+                  </div>
+                  <div className="flex w-2/3">
+                    <div className="flex flex-col gap-2 flex-1">
+                      <p className="text-sm text-green-900">
+                        {recipe.description}
+                      </p>
+                      <div className="flex space-x-4">
+                        <span className="text-gray-500 text-xs font-small py-1 rounded-full">
+                          ⏰ {recipe.time}
+                        </span>
+                        <span className="text-gray-500 text-xs font-small px-3 py-1 rounded-full">
+                          🎯 {recipe.difficulty}
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>

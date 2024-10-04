@@ -31,13 +31,13 @@ export default function RootLayout({ children }) {
             </Link>
           </header>
 
-          {/* Main content area */}
-          <main className="flex-grow text-sm md:text-md w-full max-w-xl mx-auto p-4">
+          {/* Main content area with padding to avoid being covered by the footer */}
+          <main className="flex-grow mb-64 text-sm md:text-md w-full max-w-xl mx-auto p-4">
             {children}
           </main>
 
           {/* Footer containing the Menu component */}
-          <footer className="fixed bottom-0 left-0 w-full bg-white shadow-md">
+          <footer className="fixed bottom-0 left-0 w-full bg-white shadow-md h-16">
             <Menu />
           </footer>
         </div>
@@ -45,20 +45,3 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
-
-/* Footer styles */
-
-/* <p>© {new Date().getFullYear()} Dinner Bot. All rights reserved.</p>
-            <p>
-              <Link href="/" className="text-grey-600">
-                Home
-              </Link>{" "}
-              |{" "}
-              <Link href="/privacy" className="text-gray-600">
-                Privacy Policy
-              </Link>{" "}
-              |{" "}
-              <Link href="/terms" className="text-gray-600">
-                Terms of Service
-              </Link>
-            </p> */

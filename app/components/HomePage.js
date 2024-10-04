@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import RecipeCard from "./RecipeCard";
 import RecipeForm from "./RecipeForm";
 import AllRecipes from "./AllRecipes";
 
@@ -70,7 +69,7 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div className="flex flex-col items-center justify-center relative">
+    <div className="flex flex-col mb-16 items-center justify-center relative">
       <h3 className="text-md text-gray-600 mb-4">
         Let us know what you&apos;ve got in your fridge!
       </h3>

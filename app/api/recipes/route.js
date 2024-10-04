@@ -21,14 +21,14 @@ const createResponse = (body, status = 200) => {
 
 // Generate prompt for OpenAI
 const generatePrompt = (ingredients) => `
-Given the following ingredients: ${ingredients.join(", ")}
+Given the following ingredients: ${ingredients}
 Please suggest 5 recipes using these ingredients. Format each recipe as follows:
 
 ID: [Unique recipe ID]
 Title: [Recipe title]
 Time: [Total cooking time in minutes]
 Difficulty: [Easy/Medium/Hard]
-Brief description: [A concise description of the recipe in 150 words or less]
+Brief description: [A concise description of the recipe in 100 words or less]
 Ingredients:
 [Ingredient 1]
 [Ingredient 2]
@@ -40,7 +40,7 @@ How to:
 
 Ensure that:
 - Each recipe has a unique ID.
-- The brief description is no longer than 150 words.
+- The brief description is no longer than 100 words.
 - Ingredients and steps are listed one per line without any symbols or formatting.
 - The format is consistent across all 5 recipes.
 - Do not use any numbers, hyphens, bullet points, or any other formatting in the response.
