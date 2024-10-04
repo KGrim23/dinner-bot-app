@@ -11,7 +11,7 @@ import {
 
 export default function Menu() {
   return (
-    <div className="flex justify-center space-x-6 mt-4">
+    <div className="flex flex-row md:text-md w-full justify-between items-center max-w-xl mx-auto p-4">
       {/* Home Button */}
       <Link
         href="/"

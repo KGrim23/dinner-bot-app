@@ -26,18 +26,18 @@ export default function RootLayout({ children }) {
                 alt="Logo"
                 width={150}
                 height={150}
-                className="mb-4"
+                className="mb-4 mt-4"
               />
             </Link>
           </header>
 
           {/* Main content area */}
-          <main className="flex-grow text-sm md:text-md w-full max-w-xl mx-auto p-4">
+          <main className="flex-grow text-sm md:text-md w-full max-w-xl mx-auto">
             {children}
           </main>
 
           {/* Footer containing the Menu component */}
-          <footer className="bg-white shadow-md">
+          <footer className="">
             <Menu />
           </footer>
         </div>
