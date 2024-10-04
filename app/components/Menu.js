@@ -6,7 +6,8 @@ import {
   HomeIcon,
   HeartIcon,
   Cog6ToothIcon,
-  FolderIcon, // Importing FolderIcon for Collection
+  FolderIcon,
+  PlusCircleIcon, // Importing FolderIcon for Collection
 } from "@heroicons/react/24/outline"; // Use outline icons
 
 export default function Menu() {
@@ -32,7 +33,7 @@ export default function Menu() {
 
       {/* Collection Button */}
       <Link
-        href="/collection" // Adjust the href as necessary
+        href="/collections"
         className="flex flex-col items-center p-3 rounded-lg hover:bg-gray-100 transition-all"
       >
         <FolderIcon className="h-6 w-6 text-black" />{" "}
@@ -47,6 +48,15 @@ export default function Menu() {
       >
         <Cog6ToothIcon className="h-6 w-6 text-black" />
         <span className="text-xs mt-1 text-black">Settings</span>
+      </Link>
+
+      {/* Create Recipe Button */}
+      <Link
+        href="/create-recipes"
+        className="flex flex-col items-center p-3 rounded-lg hover:bg-gray-100 transition-all"
+      >
+        <PlusCircleIcon className="h-6 w-6 text-black" />
+        <span className="text-xs mt-1 text-black">Create</span>
       </Link>
     </div>
   );

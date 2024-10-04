@@ -32,7 +32,7 @@ export default function RootLayout({ children }) {
           </header>
 
           {/* Main content area */}
-          <main className="flex-grow text-sm md:text-md w-full max-w-xl mx-auto">
+          <main className="flex-grow text-sm md:text-md w-full max-w-xl mx-auto p-4">
             {children}
           </main>
 
