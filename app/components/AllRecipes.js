@@ -39,7 +39,7 @@ export default function AllRecipes({ extractedRecipes = [], error }) {
     setCurrentIndex(index);
   };
 
-  // Not sure this one is needed?
+  // Not sure this one is needed? Orginally used to check if gpt output was valid
   const validRecipes = extractedRecipes.filter(
     (recipe) => recipe.title && recipe.description
   );
@@ -102,8 +102,11 @@ export default function AllRecipes({ extractedRecipes = [], error }) {
                         <span className="text-gray-500 text-xs font-small py-1 rounded-full">
                           ⏰ {recipe.time}
                         </span>
-                        <span className="text-gray-500 text-xs font-small px-3 py-1 rounded-full">
+                        <span className="text-gray-500 text-xs font-small py-1 rounded-full">
                           🎯 {recipe.difficulty}
+                        </span>
+                        <span className="text-gray-500 text-xs font-small py-1 rounded-full">
+                          🥣 {recipe.serving}
                         </span>
                       </div>
                     </div>

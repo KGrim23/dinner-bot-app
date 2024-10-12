@@ -10,7 +10,7 @@ export default function HomePage() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [hasFetched, setHasFetched] = useState(false);
-  const [showScrollButton, setShowScrollButton] = useState(false); // Scroll to Top button visibility
+  const [showScrollButton, setShowScrollButton] = useState(false);
 
   const extractRecipes = () => {
     if (!recipes || typeof recipes !== "string") return [];
@@ -20,6 +20,7 @@ export default function HomePage() {
       const titleMatch = recipe.match(/Title:\s*(.*)/);
       const timeMatch = recipe.match(/Time:\s*(.*)/);
       const difficultyMatch = recipe.match(/Difficulty:\s*(.*)/);
+      const servingMatch = recipe.match(/Serving:\s*(.*)/);
       const ingredientsMatch = recipe.match(
         /Ingredients:\s*([\s\S]*?)\nHow to:/
       );
@@ -33,6 +34,7 @@ export default function HomePage() {
       const difficulty = difficultyMatch
         ? difficultyMatch[1].trim()
         : "No Difficulty";
+      const serving = servingMatch ? servingMatch[1].trim() : "No Serving";
       const ingredients = ingredientsMatch
         ? ingredientsMatch[1]
             .split("\n")
@@ -46,7 +48,15 @@ export default function HomePage() {
             .filter(Boolean)
         : [];
 
-      return { description, title, time, difficulty, ingredients, steps };
+      return {
+        description,
+        title,
+        time,
+        difficulty,
+        serving,
+        ingredients,
+        steps,
+      };
     });
   };
 

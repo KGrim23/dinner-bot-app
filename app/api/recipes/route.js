@@ -21,13 +21,14 @@ const createResponse = (body, status = 200) => {
 
 // Generate prompt for OpenAI
 const generatePrompt = (ingredients) => `
-Given the following ingredients: ${ingredients}
+You are a recipe generator. Given the following ingredients: ${ingredients} or a recipe name
 Please suggest 5 recipes using these ingredients. Format each recipe as follows:
 
 ID: [Unique recipe ID]
 Title: [Recipe title]
 Time: [Total cooking time in minutes]
 Difficulty: [Easy/Medium/Hard]
+Serving: [Number of servings]
 Brief description: [A concise description of the recipe in 100 words or less]
 Ingredients: [include the quantity of all ingredients next to each of the individual ingredient]
 [Ingredient 1]
@@ -62,7 +63,7 @@ export async function POST(req) {
     });
 
     const recipes = aiResponse.choices[0].message.content.trim();
-    console.log(recipes);
+    console.log(recipes); //debug
 
     // successful response
     return createResponse({ recipes });

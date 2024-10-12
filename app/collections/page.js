@@ -49,7 +49,7 @@ export default function Collections() {
               </p>
               <div>
                 <h3 className="font-semibold">Ingredients:</h3>
-                <ul className="list-disc list-inside">
+                <ul className="list-disc ml-6 space-y-2">
                   {Array.isArray(recipe.ingredients) &&
                   recipe.ingredients.length > 0 ? (
                     recipe.ingredients.map((ing, i) => <li key={i}>{ing}</li>)
@@ -60,7 +60,7 @@ export default function Collections() {
               </div>
               <div>
                 <h3 className="font-semibold mt-2">Instructions:</h3>
-                <ol className="list-decimal list-inside">
+                <ol className="list-decimal ml-6 space-y-2">
                   {Array.isArray(recipe.instructions) &&
                   recipe.instructions.length > 0 ? (
                     recipe.instructions.map((step, i) => (
@@ -74,7 +74,7 @@ export default function Collections() {
               {/* Remove Recipe Button */}
               <button
                 onClick={() => handleRemoveRecipe(index)}
-                className="bg-black text-white px-4 py-2 rounded-md hover:bg-red-600 transition-colors"
+                className="bg-black text-white text-xs px-2 py-2 rounded-md hover:bg-red-600 transition-colors"
               >
                 Remove Recipe
               </button>
