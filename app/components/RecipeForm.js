@@ -33,21 +33,21 @@ export default function RecipeForm({
       console.log("API Response Data:", data); // Debugging log
 
       if (res.ok) {
-        setRecipes(data.recipes); // fetched data
-        setLoading(false); // Stop loading if fetch is successful
+        setRecipes(data.recipes);
+        setLoading(false);
       } else {
         setError(data.error || "An error occurred while fetching recipes.");
-        setLoading(false); // Stop loading if there is an error
+        setLoading(false);
       }
     } catch (error) {
       setError("Failed to fetch recipes. Please try again.");
-      setLoading(false); // Stop loading if an exception occurs
+      setLoading(false);
     }
   };
 
   return (
     <form
-      onSubmit={handleSubmitForm} // Use the updated handleSubmitForm function
+      onSubmit={handleSubmitForm}
       className="w-full sm:max-w-md md:max-w-lg lg:max-w-xl flex flex-col items-center"
     >
       <input

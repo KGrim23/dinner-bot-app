@@ -56,9 +56,9 @@ export default function HomePage() {
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 300) {
-        setShowScrollButton(true); // Show button after scrolling down 300px
+        setShowScrollButton(true);
       } else {
-        setShowScrollButton(false); // Hide button when above 300px
+        setShowScrollButton(false);
       }
     };
 
@@ -81,14 +81,14 @@ export default function HomePage() {
         setError={setError}
         loading={loading}
         setLoading={setLoading}
-        setHasFetched={setHasFetched} // Pass the function to set hasFetched
-        hasRecipes={extractedRecipes.length > 0} // Pass whether there are recipes
+        setHasFetched={setHasFetched}
+        hasRecipes={extractedRecipes.length > 0}
       />
 
       {/* <RecipeCard extractedRecipes={extractedRecipes} error={error} /> */}
       <AllRecipes extractedRecipes={extractedRecipes} error={error} />
 
-      {showScrollButton && ( // Render Scroll to Top button based on scroll position
+      {showScrollButton && (
         <button
           onClick={() => {
             window.scrollTo({

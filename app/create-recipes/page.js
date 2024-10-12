@@ -12,11 +12,10 @@ export default function AddRecipe() {
     prepTime: "",
   });
 
-  const [ingredient, setIngredient] = useState(""); // Temporary ingredient input
-  const [instruction, setInstruction] = useState(""); // Temporary instruction input
+  const [ingredient, setIngredient] = useState("");
+  const [instruction, setInstruction] = useState("");
   const router = useRouter();
 
-  // Handle form field changes
   const handleChange = (e) => {
     setRecipe({
       ...recipe,
@@ -24,68 +23,57 @@ export default function AddRecipe() {
     });
   };
 
-  // Handle adding a single ingredient to the list
   const handleAddIngredient = () => {
     if (ingredient.trim() !== "") {
       setRecipe({
         ...recipe,
         ingredients: [...recipe.ingredients, ingredient],
       });
-      setIngredient(""); // Clear input after adding
+      setIngredient("");
     }
   };
 
-  // Handle adding a single instruction step to the list
   const handleAddInstruction = () => {
     if (instruction.trim() !== "") {
       setRecipe({
         ...recipe,
         instructions: [...recipe.instructions, instruction],
       });
-      setInstruction(""); // Clear input after adding
+      setInstruction("");
     }
   };
 
-  // Handle form submission (saving recipe to localStorage)
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // Retrieve existing recipes from localStorage
     const storedRecipes = JSON.parse(localStorage.getItem("recipes")) || [];
-
-    // Add new recipe
     const updatedRecipes = [...storedRecipes, recipe];
-
-    // Save updated recipe list to localStorage
     localStorage.setItem("recipes", JSON.stringify(updatedRecipes));
-
-    // Redirect to the collections page
     router.push("/collections");
   };
 
-  // Handle pressing Enter key for ingredient input
   const handleIngredientKeyDown = (e) => {
     if (e.key === "Enter") {
-      e.preventDefault(); // Prevent form submission on Enter
+      e.preventDefault();
       handleAddIngredient();
     }
   };
 
-  // Handle pressing Enter key for instruction input
   const handleInstructionKeyDown = (e) => {
     if (e.key === "Enter") {
-      e.preventDefault(); // Prevent form submission on Enter
+      e.preventDefault();
       handleAddInstruction();
     }
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-4 bg-gray-00 mt-6 rounded-lg shadow-lg">
-      <h1 className="text-3xl font-bold mb-8 text-center">Add a New Recipe</h1>
+    <div className="max-w-2xl mx-auto p-6 bg-white mt-6 rounded-lg shadow-lg mb-16">
+      <h1 className="text-3xl font-bold mb-8 text-center text-gray-800">
+        Add a New Recipe
+      </h1>
       <form onSubmit={handleSubmit} className="space-y-6 mt-6">
         {/* Recipe Title */}
         <div>
-          <label className="block text-sm font-bold text-gray-700 mb-1">
+          <label className="block text-sm font-bold text-gray-700 mb-2">
             Recipe Title
           </label>
           <input
@@ -93,7 +81,7 @@ export default function AddRecipe() {
             name="title"
             value={recipe.title}
             onChange={handleChange}
-            className="block w-full px-4 py-2 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            className="block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-green-500 focus:border-green-500 sm:text-sm transition-colors duration-200"
             placeholder="Enter recipe title"
             required
           />
@@ -101,14 +89,14 @@ export default function AddRecipe() {
 
         {/* Description */}
         <div>
-          <label className="block text-sm font-bold text-gray-700 mb-1">
+          <label className="block text-sm font-bold text-gray-700 mb-2">
             Description
           </label>
           <textarea
             name="description"
             value={recipe.description}
             onChange={handleChange}
-            className="block w-full px-4 py-2 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            className="block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-green-500 focus:border-green-500 sm:text-sm transition-colors duration-200"
             placeholder="Enter a short description"
             required
           />
@@ -116,7 +104,7 @@ export default function AddRecipe() {
 
         {/* Ingredients Section */}
         <div>
-          <label className="block text-sm font-bold text-gray-700 mb-1">
+          <label className="block text-sm font-bold text-gray-700 mb-2">
             Ingredients
           </label>
           <div className="flex space-x-2">
@@ -124,15 +112,21 @@ export default function AddRecipe() {
               type="text"
               value={ingredient}
               onChange={(e) => setIngredient(e.target.value)}
-              onKeyDown={handleIngredientKeyDown} // Handle Enter key
-              className="block w-full px-4 py-2 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              onKeyDown={handleIngredientKeyDown}
+              className="block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-green-500 focus:border-green-500 sm:text-sm transition-colors duration-200"
               placeholder="Add an ingredient"
             />
+            <button
+              type="button"
+              onClick={handleAddIngredient}
+              className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition-colors"
+            >
+              Add
+            </button>
           </div>
-          {/* Display Ingredients List */}
-          <ul className="list-disc list-inside mt-2">
+          <ul className="list-disc list-inside mt-2 text-gray-700">
             {recipe.ingredients.map((ing, index) => (
-              <li key={index} className="flex justify-between">
+              <li key={index} className="flex justify-between items-center">
                 {ing}
                 <button
                   type="button"
@@ -155,7 +149,7 @@ export default function AddRecipe() {
 
         {/* Instructions Section */}
         <div>
-          <label className="block text-sm font-bold text-gray-700 mb-1">
+          <label className="block text-sm font-bold text-gray-700 mb-2">
             Instructions (Step-by-step)
           </label>
           <div className="flex space-x-2">
@@ -163,15 +157,21 @@ export default function AddRecipe() {
               type="text"
               value={instruction}
               onChange={(e) => setInstruction(e.target.value)}
-              onKeyDown={handleInstructionKeyDown} // Handle Enter key
-              className="block w-full px-4 py-2 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              onKeyDown={handleInstructionKeyDown}
+              className="block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-green-500 focus:border-green-500 sm:text-sm transition-colors duration-200"
               placeholder="Add an instruction step"
             />
+            <button
+              type="button"
+              onClick={handleAddInstruction}
+              className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition-colors"
+            >
+              Add
+            </button>
           </div>
-          {/* Display Instructions List */}
-          <ul className="list-decimal list-inside mt-2">
+          <ul className="list-decimal list-inside mt-2 text-gray-700">
             {recipe.instructions.map((step, index) => (
-              <li key={index} className="flex justify-between">
+              <li key={index} className="flex justify-between items-center">
                 {step}
                 <button
                   type="button"
@@ -194,7 +194,7 @@ export default function AddRecipe() {
 
         {/* Prep Time */}
         <div>
-          <label className="block text-sm font-bold text-gray-700 mb-1">
+          <label className="block text-sm font-bold text-gray-700 mb-2">
             Prep Time (in minutes)
           </label>
           <input
@@ -202,7 +202,7 @@ export default function AddRecipe() {
             name="prepTime"
             value={recipe.prepTime}
             onChange={handleChange}
-            className="block w-full px-4 py-2 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            className="block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-green-500 focus:border-green-500 sm:text-sm transition-colors duration-200"
             placeholder="e.g. 20"
             required
           />
@@ -211,7 +211,7 @@ export default function AddRecipe() {
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full bg-black text-white font-normal py-2 px-4 rounded hover:bg-gray-800 transition-colors"
+          className="w-full bg-green-500 text-white font-bold py-3 rounded-md hover:bg-green-600 transition-colors duration-200"
         >
           Submit Recipe
         </button>

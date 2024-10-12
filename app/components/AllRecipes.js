@@ -9,7 +9,7 @@ export default function AllRecipes({ extractedRecipes = [], error }) {
   const [currentIndex, setCurrentIndex] = useState(null);
   const [favorites, setFavorites] = useState([]);
 
-  // Load stored favorites from localStorage when the component mounts
+  // Load stored favorites from localStorage
   useEffect(() => {
     const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
     setFavorites(storedFavorites);
@@ -19,31 +19,27 @@ export default function AllRecipes({ extractedRecipes = [], error }) {
   const toggleFavorite = (index) => {
     const updatedFavorites = [...favorites];
 
-    // Toggle the favorite status of the recipe at the given index
     if (updatedFavorites.includes(index)) {
-      updatedFavorites.splice(updatedFavorites.indexOf(index), 1); // Remove from favorites if it's already there
+      updatedFavorites.splice(updatedFavorites.indexOf(index), 1);
     } else {
       updatedFavorites.push(index); // Add to favorites
     }
 
     setFavorites(updatedFavorites);
 
-    // Update localStorage with the new favorites array
     localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
 
-    // Save only the favorited recipes in localStorage under "recipes"
     const favoritedRecipes = extractedRecipes.filter((_, idx) =>
       updatedFavorites.includes(idx)
     );
     localStorage.setItem("recipes", JSON.stringify(favoritedRecipes));
   };
 
-  // Handle recipe click to show RecipeCard
   const handleRecipeClick = (index) => {
     setCurrentIndex(index);
   };
 
-  // Filter out any recipes that do not have a valid title or description
+  // Not sure this one is needed?
   const validRecipes = extractedRecipes.filter(
     (recipe) => recipe.title && recipe.description
   );
@@ -94,7 +90,7 @@ export default function AllRecipes({ extractedRecipes = [], error }) {
                       alt="recipe image"
                       width={150}
                       height={150}
-                      className="rounded-lg object-cover w-full h-full" // Full width and height of its container
+                      className="rounded-lg object-cover w-full h-full"
                     />
                   </div>
                   <div className="flex w-2/3">

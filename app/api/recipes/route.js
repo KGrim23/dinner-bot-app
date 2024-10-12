@@ -29,7 +29,7 @@ Title: [Recipe title]
 Time: [Total cooking time in minutes]
 Difficulty: [Easy/Medium/Hard]
 Brief description: [A concise description of the recipe in 100 words or less]
-Ingredients:
+Ingredients: [include the quantity of all ingredients next to each of the individual ingredient]
 [Ingredient 1]
 [Ingredient 2]
 [...]
@@ -48,7 +48,6 @@ Ensure that:
 
 export async function POST(req) {
   try {
-    // Parse and validate input
     const body = await req.json();
     const { ingredients } = ingredientsSchema.parse(body);
 
@@ -65,12 +64,12 @@ export async function POST(req) {
     const recipes = aiResponse.choices[0].message.content.trim();
     console.log(recipes);
 
-    // Return successful response
+    // successful response
     return createResponse({ recipes });
   } catch (error) {
     console.error("Error in recipe generation:", error);
 
-    // Handle specific errors
+    // specific errors
     if (error instanceof z.ZodError) {
       return createResponse({ error: "Invalid input format" }, 400);
     }
@@ -79,7 +78,7 @@ export async function POST(req) {
       return createResponse({ error: "API usage limit reached" }, 403);
     }
 
-    // Generic error response
+    // Generic error
     return createResponse({ error: "Failed to generate recipes" }, 500);
   }
 }

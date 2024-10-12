@@ -1,14 +1,14 @@
 "use client";
 
 import React from "react";
-import Link from "next/link"; // Import Link for navigation
+import Link from "next/link";
 import {
   HomeIcon,
   HeartIcon,
   Cog6ToothIcon,
   FolderIcon,
-  PlusCircleIcon, // Importing FolderIcon for Collection
-} from "@heroicons/react/24/outline"; // Use outline icons
+  PlusCircleIcon,
+} from "@heroicons/react/24/outline";
 
 export default function Menu() {
   return (
